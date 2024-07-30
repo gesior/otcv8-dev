@@ -79,6 +79,8 @@ public:
     Item();
     virtual ~Item() { }
 
+	void cloneAnimator();
+	AnimatorPtr getAnimator() { return m_animator; }
     static ItemPtr create(int id, int countOrSubtype = 1);
     static ItemPtr createFromOtb(int id);
 
@@ -178,6 +180,8 @@ private:
     uint32 m_quickLootFlags;
     uint8 m_phase;
     ticks_t m_lastPhase;
+
+	AnimatorPtr m_animator = nullptr;
 
     stdext::packed_storage<uint16> m_customAttribs;
 };

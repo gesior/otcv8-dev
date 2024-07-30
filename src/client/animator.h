@@ -45,6 +45,7 @@ class Animator : public stdext::shared_object
 {
 public:
     Animator();
+	AnimatorPtr clone();
 
     void unserialize(int animationPhases, const FileStreamPtr& fin);
     void serialize(const FileStreamPtr& fin);

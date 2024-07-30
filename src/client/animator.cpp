@@ -42,6 +42,25 @@ Animator::Animator()
     m_phase = 0;
 }
 
+AnimatorPtr Animator::clone()
+{
+	AnimatorPtr animator = AnimatorPtr(new Animator);
+
+	animator->m_animationPhases = m_animationPhases;
+	animator->m_startPhase = m_startPhase;
+	animator->m_loopCount = m_loopCount;
+	animator->m_async = m_async;
+	animator->m_phaseDurations = m_phaseDurations;
+	animator->m_currentDuration = m_currentDuration;
+	animator->m_currentDirection = m_currentDirection;
+	animator->m_currentLoop = m_currentLoop;
+	animator->m_lastPhaseTicks = m_lastPhaseTicks;
+	animator->m_isComplete = m_isComplete;
+	animator->m_phase = m_phase;
+
+	return animator;
+}
+
 void Animator::unserialize(int animationPhases, const FileStreamPtr& fin)
 {
     m_animationPhases = animationPhases;

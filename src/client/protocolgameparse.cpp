@@ -2743,6 +2743,7 @@ void ProtocolGame::parseItemInfo(const InputMessagePtr& msg)
         ItemPtr item(new Item);
         item->setId(msg->getU16());
         item->setCountOrSubType(g_game.getFeature(Otc::GameCountU16) ? msg->getU16() : msg->getU8());
+		item->cloneAnimator();
 
         std::string desc = msg->getString();
         list.push_back(std::make_tuple(item, desc));

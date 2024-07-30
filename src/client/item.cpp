@@ -51,11 +51,19 @@ Item::Item() :
 {
 }
 
+void Item::cloneAnimator()
+{
+	if (rawGetThingType() && rawGetThingType()->getAnimator()) {
+		m_animator = rawGetThingType()->getAnimator()->clone();
+	}
+}
+
 ItemPtr Item::create(int id, int countOrSubtype)
 {
     ItemPtr item(new Item);
     item->setId(id);
     item->setCountOrSubType(countOrSubtype);
+	item->cloneAnimator();
     return item;
 }
 
@@ -63,6 +71,7 @@ ItemPtr Item::createFromOtb(int id)
 {
     ItemPtr item(new Item);
     item->setOtbId(id);
+	item->cloneAnimator();
     return item;
 }
 
@@ -299,6 +308,7 @@ ItemPtr Item::clone()
 {
     ItemPtr item = ItemPtr(new Item);
     *(item.get()) = *this;
+	item->cloneAnimator();
     return item;
 }
 
